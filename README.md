@@ -11,8 +11,6 @@ Trabalho final da matéria de Data Mining na Pós Graduação em BI-Master na PU
 
 - Foi fornecida, também, base de testes para aplicação do modelo treinado e avaliação dos resultados
 
-### Arquivos
-DESCREVER OS ARQUIVOS 
 
 ## Resumo do Trabalho Desenvolvido
 - O trabalho foi desenvolvido em RapidMiner
@@ -27,5 +25,11 @@ DESCREVER OS ARQUIVOS
 
 - O melhor desempenho obtido teve Acurácia de 98,88% e Kappa de 0,98
 - Somente 1 registro da base de teste foi classificado com erro na simulação em que obtive o melhor desempenho
-- O arquivo [Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx]() em anexo contém relatório detalhando o modelo desenvolvido e os experimentos realizados
-Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx
+- O arquivo [Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx](https://github.com/buleo/Problema-de-Classificacao/blob/main/Trabalho%20Final%20-%20DM%20-%20Fernando%20Mauro%20Buleo%20Barbosa.docx) em anexo contém relatório detalhando o modelo desenvolvido e os experimentos realizados
+
+
+## Arquivos
+- "Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx" - Relatório detalhando o modelo desenvolvido e os experimentos realizados
+- "CAVALOS.rmp" - Arquivo em [RapidMiner](https://rapidminer.com/) com o modelo desenvolvido
+- "horse.csv" - Arquivo com a base para treino do modelo
+- "horseTest.csv" - Arquivo com a base para testes do modelo
