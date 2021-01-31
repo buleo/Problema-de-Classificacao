@@ -13,7 +13,7 @@ Trabalho final da matéria de Data Mining na Pós Graduação em BI-Master na PU
 
 
 ## Resumo do Trabalho Desenvolvido
-- O trabalho foi desenvolvido em RapidMiner
+- O trabalho foi desenvolvido em [RapidMiner](https://rapidminer.com/)
 - Foi desenvolvida solução para aplicação de Oversample usando os operadores do RapidMiner
 - Dentre as simulações realizadas a que proporcionou o melhor desempenho conta com a aplicação das seguintes técnicas:
   - Tratamento de Missing Values 
