@@ -27,6 +27,5 @@ DESCREVER OS ARQUIVOS
 
 - O melhor desempenho obtido teve Acurácia de 98,88% e Kappa de 0,98
 - Somente 1 registro da base de teste foi classificado com erro na simulação em que obtive o melhor desempenho
- 
-- Apresento nas próximas páginas o relatório detalhando cronologicamente os experimentos realizados
-
+- O arquivo [Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx]() em anexo contém relatório detalhando o modelo desenvolvido e os experimentos realizados
+Trabalho Final - DM - Fernando Mauro Buleo Barbosa.docx
