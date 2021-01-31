@@ -1,0 +1,884 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="9.0.003">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="9.0.003" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="read_csv" compatibility="9.0.003" expanded="true" height="68" name="Read CSV - Treino" width="90" x="45" y="34">
+        <parameter key="csv_file" value="D:\Arquivos\Documents\Fernando\BI-MASTER\DM\TRABALHO FINAL\horse.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value="MMM d, yyyy h:mm:ss a z"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="surgery.true.polynominal.attribute"/>
+          <parameter key="1" value="age.true.polynominal.attribute"/>
+          <parameter key="2" value="hospital_number.true.integer.id"/>
+          <parameter key="3" value="rectal_temp.true.real.attribute"/>
+          <parameter key="4" value="pulse.true.integer.attribute"/>
+          <parameter key="5" value="respiratory_rate.true.integer.attribute"/>
+          <parameter key="6" value="temp_of_extremities.true.polynominal.attribute"/>
+          <parameter key="7" value="peripheral_pulse.true.polynominal.attribute"/>
+          <parameter key="8" value="mucous_membrane.true.polynominal.attribute"/>
+          <parameter key="9" value="capillary_refill_time.true.polynominal.attribute"/>
+          <parameter key="10" value="pain.true.polynominal.attribute"/>
+          <parameter key="11" value="peristalsis.true.polynominal.attribute"/>
+          <parameter key="12" value="abdominal_distention.true.polynominal.attribute"/>
+          <parameter key="13" value="nasogastric_tube.true.polynominal.attribute"/>
+          <parameter key="14" value="nasogastric_reflux.true.polynominal.attribute"/>
+          <parameter key="15" value="nasogastric_reflux_ph.true.real.attribute"/>
+          <parameter key="16" value="rectal_exam_feces.true.polynominal.attribute"/>
+          <parameter key="17" value="abdomen.true.polynominal.attribute"/>
+          <parameter key="18" value="packed_cell_volume.true.real.attribute"/>
+          <parameter key="19" value="total_protein.true.real.attribute"/>
+          <parameter key="20" value="abdomo_appearance.true.polynominal.attribute"/>
+          <parameter key="21" value="abdomo_protein.true.real.attribute"/>
+          <parameter key="22" value="outcome.true.polynominal.label"/>
+          <parameter key="23" value="surgical_lesion.true.polynominal.attribute"/>
+          <parameter key="24" value="lesion_1.true.integer.attribute"/>
+          <parameter key="25" value="lesion_2.true.integer.attribute"/>
+          <parameter key="26" value="lesion_3.true.integer.attribute"/>
+          <parameter key="27" value="cp_data.true.polynominal.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="data_management" value="auto"/>
+        <description align="center" color="yellow" colored="true" width="126">L&amp;#234; a Base de Treino</description>
+      </operator>
+      <operator activated="false" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="PCA (3)" width="90" x="313" y="697">
+        <process expanded="true">
+          <operator activated="false" class="normalize" compatibility="9.0.003" expanded="true" height="103" name="Normalize" width="90" x="112" y="34">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="method" value="range transformation"/>
+            <parameter key="min" value="0.0"/>
+            <parameter key="max" value="1.0"/>
+            <parameter key="allow_negative_values" value="false"/>
+          </operator>
+          <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="PCA (2)" width="90" x="45" y="238">
+            <process expanded="true">
+              <operator activated="true" class="nominal_to_numerical" compatibility="9.0.003" expanded="true" height="103" name="Nominal to Numerical" width="90" x="45" y="34">
+                <parameter key="return_preprocessing_model" value="false"/>
+                <parameter key="create_view" value="false"/>
+                <parameter key="attribute_filter_type" value="all"/>
+                <parameter key="attribute" value=""/>
+                <parameter key="attributes" value=""/>
+                <parameter key="use_except_expression" value="false"/>
+                <parameter key="value_type" value="nominal"/>
+                <parameter key="use_value_type_exception" value="false"/>
+                <parameter key="except_value_type" value="file_path"/>
+                <parameter key="block_type" value="single_value"/>
+                <parameter key="use_block_type_exception" value="false"/>
+                <parameter key="except_block_type" value="single_value"/>
+                <parameter key="invert_selection" value="false"/>
+                <parameter key="include_special_attributes" value="false"/>
+                <parameter key="coding_type" value="dummy coding"/>
+                <parameter key="use_comparison_groups" value="false"/>
+                <list key="comparison_groups"/>
+                <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+                <parameter key="use_underscore_in_name" value="false"/>
+              </operator>
+              <operator activated="true" class="principal_component_analysis" compatibility="9.0.003" expanded="true" height="103" name="PCA" width="90" x="112" y="136">
+                <parameter key="dimensionality_reduction" value="keep variance"/>
+                <parameter key="variance_threshold" value="0.98"/>
+                <parameter key="number_of_components" value="1"/>
+              </operator>
+              <connect from_port="in 1" to_op="Nominal to Numerical" to_port="example set input"/>
+              <connect from_op="Nominal to Numerical" from_port="example set output" to_op="PCA" to_port="example set input"/>
+              <connect from_op="PCA" from_port="example set output" to_port="out 1"/>
+              <connect from_op="PCA" from_port="preprocessing model" to_port="out 2"/>
+              <portSpacing port="source_in 1" spacing="0"/>
+              <portSpacing port="source_in 2" spacing="0"/>
+              <portSpacing port="sink_out 1" spacing="0"/>
+              <portSpacing port="sink_out 2" spacing="0"/>
+              <portSpacing port="sink_out 3" spacing="0"/>
+            </process>
+          </operator>
+          <connect from_port="in 1" to_op="PCA (2)" to_port="in 1"/>
+          <connect from_op="PCA (2)" from_port="out 1" to_port="out 1"/>
+          <connect from_op="PCA (2)" from_port="out 2" to_port="out 2"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 3" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="read_csv" compatibility="9.0.003" expanded="true" height="68" name="Read CSV - Teste" width="90" x="179" y="34">
+        <parameter key="csv_file" value="D:\Arquivos\Documents\Fernando\BI-MASTER\DM\TRABALHO FINAL\horseTest.csv"/>
+        <parameter key="column_separators" value=","/>
+        <parameter key="trim_lines" value="false"/>
+        <parameter key="use_quotes" value="true"/>
+        <parameter key="quotes_character" value="&quot;"/>
+        <parameter key="escape_character" value="\"/>
+        <parameter key="skip_comments" value="true"/>
+        <parameter key="comment_characters" value="#"/>
+        <parameter key="starting_row" value="1"/>
+        <parameter key="parse_numbers" value="true"/>
+        <parameter key="decimal_character" value="."/>
+        <parameter key="grouped_digits" value="false"/>
+        <parameter key="grouping_character" value=","/>
+        <parameter key="infinity_representation" value=""/>
+        <parameter key="date_format" value="MMM d, yyyy h:mm:ss a z"/>
+        <parameter key="first_row_as_names" value="true"/>
+        <list key="annotations"/>
+        <parameter key="time_zone" value="SYSTEM"/>
+        <parameter key="locale" value="English (United States)"/>
+        <parameter key="encoding" value="windows-1252"/>
+        <parameter key="read_all_values_as_polynominal" value="false"/>
+        <list key="data_set_meta_data_information">
+          <parameter key="0" value="surgery.true.polynominal.attribute"/>
+          <parameter key="1" value="age.true.polynominal.attribute"/>
+          <parameter key="2" value="hospital_number.true.integer.id"/>
+          <parameter key="3" value="rectal_temp.true.real.attribute"/>
+          <parameter key="4" value="pulse.true.integer.attribute"/>
+          <parameter key="5" value="respiratory_rate.true.integer.attribute"/>
+          <parameter key="6" value="temp_of_extremities.true.polynominal.attribute"/>
+          <parameter key="7" value="peripheral_pulse.true.polynominal.attribute"/>
+          <parameter key="8" value="mucous_membrane.true.polynominal.attribute"/>
+          <parameter key="9" value="capillary_refill_time.true.polynominal.attribute"/>
+          <parameter key="10" value="pain.true.polynominal.attribute"/>
+          <parameter key="11" value="peristalsis.true.polynominal.attribute"/>
+          <parameter key="12" value="abdominal_distention.true.polynominal.attribute"/>
+          <parameter key="13" value="nasogastric_tube.true.polynominal.attribute"/>
+          <parameter key="14" value="nasogastric_reflux.true.polynominal.attribute"/>
+          <parameter key="15" value="nasogastric_reflux_ph.true.real.attribute"/>
+          <parameter key="16" value="rectal_exam_feces.true.polynominal.attribute"/>
+          <parameter key="17" value="abdomen.true.polynominal.attribute"/>
+          <parameter key="18" value="packed_cell_volume.true.real.attribute"/>
+          <parameter key="19" value="total_protein.true.real.attribute"/>
+          <parameter key="20" value="abdomo_appearance.true.polynominal.attribute"/>
+          <parameter key="21" value="abdomo_protein.true.real.attribute"/>
+          <parameter key="22" value="outcome.true.polynominal.label"/>
+          <parameter key="23" value="surgical_lesion.true.polynominal.attribute"/>
+          <parameter key="24" value="lesion_1.true.integer.attribute"/>
+          <parameter key="25" value="lesion_2.true.integer.attribute"/>
+          <parameter key="26" value="lesion_3.true.integer.attribute"/>
+          <parameter key="27" value="cp_data.true.polynominal.attribute"/>
+        </list>
+        <parameter key="read_not_matching_values_as_missings" value="true"/>
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="data_management" value="auto"/>
+        <description align="center" color="yellow" colored="true" width="126">L&amp;#234; a Base de Teste</description>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="Trata Missing Values" width="90" x="45" y="391">
+        <process expanded="true">
+          <operator activated="true" class="select_attributes" compatibility="9.0.003" expanded="true" height="82" name="Select Attributes" width="90" x="45" y="34">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="abdomo_protein|nasogastric_reflux_ph"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="true"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <description align="center" color="yellow" colored="true" width="126">Exclui os atributos abdomo_protein e nasogastric_reflux_ph&lt;br&gt;pois mais de 50% da base de treino original possuem Missing Values nesses atributos</description>
+          </operator>
+          <operator activated="true" class="declare_missing_value" compatibility="9.0.003" expanded="true" height="82" name="Declare Missing Value" width="90" x="246" y="136">
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="mode" value="nominal"/>
+            <parameter key="nominal_value" value="NA"/>
+            <parameter key="expression_value" value=""/>
+            <description align="center" color="yellow" colored="true" width="126">Declaro NA como sendo Missing Values para serem tratados na etapa seguinte</description>
+          </operator>
+          <operator activated="true" class="replace_missing_values" compatibility="9.0.003" expanded="true" height="103" name="Replace Missing Values" width="90" x="447" y="136">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default" value="average"/>
+            <list key="columns"/>
+            <description align="center" color="yellow" colored="true" width="126">Troca Missing Vallues num&amp;#233;ricos pela m&amp;#233;dia e Nominais pelo mais frequente</description>
+          </operator>
+          <operator activated="false" class="nominal_to_numerical" compatibility="9.0.003" expanded="true" height="103" name="Nominal to Numerical (2)" width="90" x="45" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="coding_type" value="dummy coding"/>
+            <parameter key="use_comparison_groups" value="false"/>
+            <list key="comparison_groups"/>
+            <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+            <parameter key="use_underscore_in_name" value="false"/>
+          </operator>
+          <operator activated="true" class="select_attributes" compatibility="9.0.003" expanded="true" height="82" name="Select Attributes (2)" width="90" x="45" y="340">
+            <parameter key="attribute_filter_type" value="subset"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value="abdomo_protein|nasogastric_reflux_ph"/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="true"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <description align="center" color="yellow" colored="true" width="126">Exclui os atributos abdomo_protein e nasogastric_reflux_ph&lt;br&gt;pois mais de 50% da base de treino original possuem Missing Values nesses atributos</description>
+          </operator>
+          <operator activated="true" class="declare_missing_value" compatibility="9.0.003" expanded="true" height="82" name="Declare Missing Value (2)" width="90" x="246" y="391">
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="mode" value="nominal"/>
+            <parameter key="nominal_value" value="NA"/>
+            <parameter key="expression_value" value=""/>
+            <description align="center" color="yellow" colored="true" width="126">Declaro NA como sendo Missing Values para serem tratados na etapa seguinte</description>
+          </operator>
+          <operator activated="true" class="replace_missing_values" compatibility="9.0.003" expanded="true" height="103" name="Replace Missing Values (2)" width="90" x="447" y="391">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="attribute_value"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="time"/>
+            <parameter key="block_type" value="attribute_block"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_matrix_row_start"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="default" value="average"/>
+            <list key="columns"/>
+            <description align="center" color="yellow" colored="true" width="126">Troca Missing Vallues num&amp;#233;ricos pela m&amp;#233;dia e Nominais pelo mais frequente</description>
+          </operator>
+          <operator activated="false" class="normalize" compatibility="9.0.003" expanded="true" height="103" name="Normalize (2)" width="90" x="313" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="method" value="range transformation"/>
+            <parameter key="min" value="0.0"/>
+            <parameter key="max" value="0.5"/>
+            <parameter key="allow_negative_values" value="false"/>
+          </operator>
+          <operator activated="false" class="nominal_to_numerical" compatibility="9.0.003" expanded="true" height="103" name="Nominal to Numerical (3)" width="90" x="179" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="nominal"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="file_path"/>
+            <parameter key="block_type" value="single_value"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="single_value"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="coding_type" value="dummy coding"/>
+            <parameter key="use_comparison_groups" value="false"/>
+            <list key="comparison_groups"/>
+            <parameter key="unexpected_value_handling" value="all 0 and warning"/>
+            <parameter key="use_underscore_in_name" value="false"/>
+          </operator>
+          <operator activated="false" class="normalize" compatibility="9.0.003" expanded="true" height="103" name="Normalize (3)" width="90" x="581" y="595">
+            <parameter key="return_preprocessing_model" value="false"/>
+            <parameter key="create_view" value="false"/>
+            <parameter key="attribute_filter_type" value="all"/>
+            <parameter key="attribute" value=""/>
+            <parameter key="attributes" value=""/>
+            <parameter key="use_except_expression" value="false"/>
+            <parameter key="value_type" value="numeric"/>
+            <parameter key="use_value_type_exception" value="false"/>
+            <parameter key="except_value_type" value="real"/>
+            <parameter key="block_type" value="value_series"/>
+            <parameter key="use_block_type_exception" value="false"/>
+            <parameter key="except_block_type" value="value_series_end"/>
+            <parameter key="invert_selection" value="false"/>
+            <parameter key="include_special_attributes" value="false"/>
+            <parameter key="method" value="range transformation"/>
+            <parameter key="min" value="0.0"/>
+            <parameter key="max" value="0.5"/>
+            <parameter key="allow_negative_values" value="false"/>
+          </operator>
+          <connect from_port="in 1" to_op="Select Attributes" to_port="example set input"/>
+          <connect from_port="in 2" to_op="Select Attributes (2)" to_port="example set input"/>
+          <connect from_op="Select Attributes" from_port="example set output" to_op="Declare Missing Value" to_port="example set input"/>
+          <connect from_op="Declare Missing Value" from_port="example set output" to_op="Replace Missing Values" to_port="example set input"/>
+          <connect from_op="Replace Missing Values" from_port="example set output" to_port="out 1"/>
+          <connect from_op="Select Attributes (2)" from_port="example set output" to_op="Declare Missing Value (2)" to_port="example set input"/>
+          <connect from_op="Declare Missing Value (2)" from_port="example set output" to_op="Replace Missing Values (2)" to_port="example set input"/>
+          <connect from_op="Replace Missing Values (2)" from_port="example set output" to_port="out 2"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="source_in 3" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+          <portSpacing port="sink_out 3" spacing="0"/>
+        </process>
+        <description align="center" color="yellow" colored="true" width="126">Efetua o descarte de atributos com muitos Missing Values e faz o mesmo tratamento de Missing Values para a base de Treino e Teste</description>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="82" name="OverSampling" width="90" x="179" y="238">
+        <process expanded="true">
+          <operator activated="true" class="multiply" compatibility="9.0.003" expanded="true" height="124" name="Multiply (3)" width="90" x="45" y="187"/>
+          <operator activated="true" class="filter_examples" compatibility="9.0.003" expanded="true" height="103" name="Filter Died" width="90" x="179" y="34">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="outcome.equals.died"/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+            <description align="center" color="yellow" colored="true" width="126">Filtro os 77 registros com OutCome Died na base de Treino</description>
+          </operator>
+          <operator activated="true" class="sample_bootstrapping" compatibility="9.0.003" expanded="true" height="82" name="Sample (2)" width="90" x="313" y="34">
+            <parameter key="sample" value="absolute"/>
+            <parameter key="sample_size" value="178"/>
+            <parameter key="sample_ratio" value="1.0"/>
+            <parameter key="use_weights" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <description align="center" color="yellow" colored="true" width="126">&amp;quot;Cria&amp;quot; Sample de 178 registros com OutCome Died para a base de Treino</description>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="9.0.003" expanded="true" height="103" name="Filter Lived" width="90" x="179" y="238">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="outcome.equals.lived"/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+            <description align="center" color="yellow" colored="true" width="126">Filtro os 178 registros com OutCome Lived na base de Treino</description>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="9.0.003" expanded="true" height="103" name="Filter Euthanized" width="90" x="179" y="442">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="outcome.equals.euthanized"/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+            <description align="center" color="yellow" colored="true" width="126">Filtro os 77 registros com OutCome Euthanized na base de Treino</description>
+          </operator>
+          <operator activated="true" class="sample_bootstrapping" compatibility="9.0.003" expanded="true" height="82" name="Sample (Bootstrapping)" width="90" x="313" y="442">
+            <parameter key="sample" value="absolute"/>
+            <parameter key="sample_size" value="178"/>
+            <parameter key="sample_ratio" value="1.0"/>
+            <parameter key="use_weights" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <description align="center" color="yellow" colored="true" width="126">&amp;quot;Cria&amp;quot; Sample de 178 registros com OutCome Euthanized para a base de Treino</description>
+          </operator>
+          <operator activated="true" class="append" compatibility="9.0.003" expanded="true" height="124" name="Append" width="90" x="514" y="238">
+            <parameter key="datamanagement" value="double_array"/>
+            <parameter key="data_management" value="auto"/>
+            <parameter key="merge_type" value="all"/>
+            <description align="center" color="yellow" colored="true" width="126">Concateno os samples de 178 registros de Died, Lived e Euthanized cada, totalizando um Sample de 534 registros (OverSampling)</description>
+          </operator>
+          <connect from_port="in 1" to_op="Multiply (3)" to_port="input"/>
+          <connect from_op="Multiply (3)" from_port="output 1" to_op="Filter Died" to_port="example set input"/>
+          <connect from_op="Multiply (3)" from_port="output 2" to_op="Filter Lived" to_port="example set input"/>
+          <connect from_op="Multiply (3)" from_port="output 3" to_op="Filter Euthanized" to_port="example set input"/>
+          <connect from_op="Filter Died" from_port="example set output" to_op="Sample (2)" to_port="example set input"/>
+          <connect from_op="Sample (2)" from_port="example set output" to_op="Append" to_port="example set 1"/>
+          <connect from_op="Filter Lived" from_port="example set output" to_op="Append" to_port="example set 2"/>
+          <connect from_op="Filter Euthanized" from_port="example set output" to_op="Sample (Bootstrapping)" to_port="example set input"/>
+          <connect from_op="Sample (Bootstrapping)" from_port="example set output" to_op="Append" to_port="example set 3"/>
+          <connect from_op="Append" from_port="merged set" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+        <description align="center" color="yellow" colored="true" width="126">Subprocesso para balancear base atrav&amp;#233;s de Oversampling</description>
+      </operator>
+      <operator activated="false" class="sample" compatibility="9.0.003" expanded="true" height="82" name="Sample" width="90" x="45" y="799">
+        <parameter key="sample" value="absolute"/>
+        <parameter key="balance_data" value="true"/>
+        <parameter key="sample_size" value="100"/>
+        <parameter key="sample_ratio" value="0.1"/>
+        <parameter key="sample_probability" value="0.1"/>
+        <list key="sample_size_per_class">
+          <parameter key="died" value="100"/>
+          <parameter key="euthanized" value="100"/>
+          <parameter key="lived" value="100"/>
+        </list>
+        <list key="sample_ratio_per_class"/>
+        <list key="sample_probability_per_class"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="82" name="Retira OutLiers" width="90" x="313" y="238">
+        <process expanded="true">
+          <operator activated="true" class="detect_outlier_distances" compatibility="9.0.003" expanded="true" height="82" name="Detect Outlier (Distances)" width="90" x="179" y="34">
+            <parameter key="number_of_neighbors" value="10"/>
+            <parameter key="number_of_outliers" value="20"/>
+            <parameter key="distance_function" value="euclidian distance"/>
+          </operator>
+          <operator activated="true" class="filter_examples" compatibility="9.0.003" expanded="true" height="103" name="Filter Examples" width="90" x="380" y="34">
+            <parameter key="parameter_expression" value=""/>
+            <parameter key="condition_class" value="custom_filters"/>
+            <parameter key="invert_filter" value="false"/>
+            <list key="filters_list">
+              <parameter key="filters_entry_key" value="outlier.equals.false"/>
+            </list>
+            <parameter key="filters_logic_and" value="true"/>
+            <parameter key="filters_check_metadata" value="true"/>
+          </operator>
+          <connect from_port="in 1" to_op="Detect Outlier (Distances)" to_port="example set input"/>
+          <connect from_op="Detect Outlier (Distances)" from_port="example set output" to_op="Filter Examples" to_port="example set input"/>
+          <connect from_op="Filter Examples" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+        <description align="center" color="yellow" colored="true" width="126">Subprocesso para retirada de Outliers</description>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="82" name="Weight" width="90" x="447" y="238">
+        <process expanded="true">
+          <operator activated="true" class="weight_by_information_gain" compatibility="9.0.003" expanded="true" height="82" name="Weight by Information Gain" width="90" x="179" y="34">
+            <parameter key="normalize_weights" value="true"/>
+            <parameter key="sort_weights" value="true"/>
+            <parameter key="sort_direction" value="ascending"/>
+          </operator>
+          <operator activated="false" class="optimize_weights_evolutionary" compatibility="9.0.003" expanded="true" height="103" name="Optimize Weights (Evolutionary)" width="90" x="380" y="340">
+            <parameter key="population_size" value="5"/>
+            <parameter key="maximum_number_of_generations" value="30"/>
+            <parameter key="use_early_stopping" value="false"/>
+            <parameter key="generations_without_improval" value="2"/>
+            <parameter key="normalize_weights" value="true"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="user_result_individual_selection" value="false"/>
+            <parameter key="show_population_plotter" value="false"/>
+            <parameter key="plot_generations" value="10"/>
+            <parameter key="constraint_draw_range" value="false"/>
+            <parameter key="draw_dominated_points" value="true"/>
+            <parameter key="maximal_fitness" value="Infinity"/>
+            <parameter key="selection_scheme" value="tournament"/>
+            <parameter key="tournament_size" value="0.25"/>
+            <parameter key="start_temperature" value="1.0"/>
+            <parameter key="dynamic_selection_pressure" value="true"/>
+            <parameter key="keep_best_individual" value="false"/>
+            <parameter key="save_intermediate_weights" value="false"/>
+            <parameter key="intermediate_weights_generations" value="10"/>
+            <parameter key="mutation_variance" value="1.0"/>
+            <parameter key="1_5_rule" value="true"/>
+            <parameter key="bounded_mutation" value="false"/>
+            <parameter key="p_crossover" value="0.0"/>
+            <parameter key="crossover_type" value="uniform"/>
+            <parameter key="use_default_mutation_rate" value="true"/>
+            <parameter key="initialize_with_input_weights" value="false"/>
+            <process expanded="true">
+              <operator activated="true" class="split_validation" compatibility="9.0.003" expanded="true" height="124" name="Validation" width="90" x="246" y="187">
+                <parameter key="create_complete_model" value="false"/>
+                <parameter key="split" value="relative"/>
+                <parameter key="split_ratio" value="0.7"/>
+                <parameter key="training_set_size" value="100"/>
+                <parameter key="test_set_size" value="-1"/>
+                <parameter key="sampling_type" value="shuffled sampling"/>
+                <parameter key="use_local_random_seed" value="false"/>
+                <parameter key="local_random_seed" value="1992"/>
+                <process expanded="true">
+                  <operator activated="true" class="concurrency:parallel_random_forest" compatibility="9.0.003" expanded="true" height="103" name="Random Forest (2)" width="90" x="112" y="238">
+                    <parameter key="number_of_trees" value="100"/>
+                    <parameter key="criterion" value="accuracy"/>
+                    <parameter key="maximal_depth" value="10"/>
+                    <parameter key="apply_pruning" value="false"/>
+                    <parameter key="confidence" value="0.1"/>
+                    <parameter key="apply_prepruning" value="false"/>
+                    <parameter key="minimal_gain" value="0.01"/>
+                    <parameter key="minimal_leaf_size" value="2"/>
+                    <parameter key="minimal_size_for_split" value="4"/>
+                    <parameter key="number_of_prepruning_alternatives" value="3"/>
+                    <parameter key="random_splits" value="false"/>
+                    <parameter key="guess_subset_ratio" value="true"/>
+                    <parameter key="subset_ratio" value="0.2"/>
+                    <parameter key="voting_strategy" value="confidence vote"/>
+                    <parameter key="use_local_random_seed" value="false"/>
+                    <parameter key="local_random_seed" value="1992"/>
+                    <parameter key="enable_parallel_execution" value="true"/>
+                  </operator>
+                  <connect from_port="training" to_op="Random Forest (2)" to_port="training set"/>
+                  <connect from_op="Random Forest (2)" from_port="model" to_port="model"/>
+                  <portSpacing port="source_training" spacing="0"/>
+                  <portSpacing port="sink_model" spacing="0"/>
+                  <portSpacing port="sink_through 1" spacing="0"/>
+                </process>
+                <process expanded="true">
+                  <operator activated="true" class="apply_model" compatibility="9.0.003" expanded="true" height="82" name="Apply Model (2)" width="90" x="45" y="34">
+                    <list key="application_parameters"/>
+                    <parameter key="create_view" value="false"/>
+                  </operator>
+                  <operator activated="true" class="performance_classification" compatibility="9.0.003" expanded="true" height="82" name="Performance (2)" width="90" x="179" y="34">
+                    <parameter key="main_criterion" value="first"/>
+                    <parameter key="accuracy" value="true"/>
+                    <parameter key="classification_error" value="false"/>
+                    <parameter key="kappa" value="true"/>
+                    <parameter key="weighted_mean_recall" value="false"/>
+                    <parameter key="weighted_mean_precision" value="false"/>
+                    <parameter key="spearman_rho" value="false"/>
+                    <parameter key="kendall_tau" value="false"/>
+                    <parameter key="absolute_error" value="false"/>
+                    <parameter key="relative_error" value="false"/>
+                    <parameter key="relative_error_lenient" value="false"/>
+                    <parameter key="relative_error_strict" value="false"/>
+                    <parameter key="normalized_absolute_error" value="false"/>
+                    <parameter key="root_mean_squared_error" value="false"/>
+                    <parameter key="root_relative_squared_error" value="false"/>
+                    <parameter key="squared_error" value="false"/>
+                    <parameter key="correlation" value="false"/>
+                    <parameter key="squared_correlation" value="false"/>
+                    <parameter key="cross-entropy" value="false"/>
+                    <parameter key="margin" value="false"/>
+                    <parameter key="soft_margin_loss" value="false"/>
+                    <parameter key="logistic_loss" value="false"/>
+                    <parameter key="skip_undefined_labels" value="true"/>
+                    <parameter key="use_example_weights" value="true"/>
+                    <list key="class_weights"/>
+                  </operator>
+                  <connect from_port="model" to_op="Apply Model (2)" to_port="model"/>
+                  <connect from_port="test set" to_op="Apply Model (2)" to_port="unlabelled data"/>
+                  <connect from_op="Apply Model (2)" from_port="labelled data" to_op="Performance (2)" to_port="labelled data"/>
+                  <connect from_op="Performance (2)" from_port="performance" to_port="averagable 1"/>
+                  <portSpacing port="source_model" spacing="0"/>
+                  <portSpacing port="source_test set" spacing="0"/>
+                  <portSpacing port="source_through 1" spacing="0"/>
+                  <portSpacing port="sink_averagable 1" spacing="0"/>
+                  <portSpacing port="sink_averagable 2" spacing="0"/>
+                </process>
+              </operator>
+              <connect from_port="example set" to_op="Validation" to_port="training"/>
+              <connect from_op="Validation" from_port="averagable 1" to_port="performance"/>
+              <portSpacing port="source_example set" spacing="0"/>
+              <portSpacing port="source_through 1" spacing="0"/>
+              <portSpacing port="sink_performance" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="select_by_weights" compatibility="9.0.003" expanded="true" height="103" name="Select by Weights" width="90" x="380" y="34">
+            <parameter key="weight_relation" value="greater equals"/>
+            <parameter key="weight" value="0.2"/>
+            <parameter key="k" value="10"/>
+            <parameter key="p" value="0.5"/>
+            <parameter key="deselect_unknown" value="true"/>
+            <parameter key="use_absolute_weights" value="true"/>
+          </operator>
+          <connect from_port="in 1" to_op="Weight by Information Gain" to_port="example set"/>
+          <connect from_op="Weight by Information Gain" from_port="weights" to_op="Select by Weights" to_port="weights"/>
+          <connect from_op="Weight by Information Gain" from_port="example set" to_op="Select by Weights" to_port="example set input"/>
+          <connect from_op="Select by Weights" from_port="example set output" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+        <description align="center" color="yellow" colored="true" width="126">Subprocesso para redu&amp;#231;&amp;#227;o de dimensionalidade atrav&amp;#233;s da retirada de atributos de pouco &amp;quot;peso&amp;quot;</description>
+      </operator>
+      <operator activated="false" class="remove_useless_attributes" compatibility="9.0.003" expanded="true" height="82" name="Remove Useless Attributes" width="90" x="179" y="799">
+        <parameter key="numerical_min_deviation" value="0.0"/>
+        <parameter key="nominal_useless_above" value="1.0"/>
+        <parameter key="nominal_remove_id_like" value="true"/>
+        <parameter key="nominal_useless_below" value="0.0"/>
+      </operator>
+      <operator activated="false" class="remove_correlated_attributes" compatibility="9.0.003" expanded="true" height="82" name="Remove Correlated Attributes" width="90" x="45" y="697">
+        <parameter key="correlation" value="0.9"/>
+        <parameter key="filter_relation" value="greater"/>
+        <parameter key="attribute_order" value="original"/>
+        <parameter key="use_absolute_correlation" value="true"/>
+        <parameter key="use_local_random_seed" value="false"/>
+        <parameter key="local_random_seed" value="1992"/>
+      </operator>
+      <operator activated="false" class="principal_component_analysis_kernel" compatibility="9.0.003" expanded="true" height="103" name="PCA (Kernel)" width="90" x="179" y="697">
+        <parameter key="kernel_type" value="radial"/>
+        <parameter key="kernel_gamma" value="1.0"/>
+        <parameter key="kernel_sigma1" value="1.0"/>
+        <parameter key="kernel_sigma2" value="0.0"/>
+        <parameter key="kernel_sigma3" value="2.0"/>
+        <parameter key="kernel_degree" value="3.0"/>
+        <parameter key="kernel_shift" value="1.0"/>
+        <parameter key="kernel_a" value="1.0"/>
+        <parameter key="kernel_b" value="0.0"/>
+      </operator>
+      <operator activated="true" class="subprocess" compatibility="9.0.003" expanded="true" height="103" name="Aplica Modelo" width="90" x="581" y="493">
+        <process expanded="true">
+          <operator activated="false" class="id3" compatibility="9.0.003" expanded="true" height="82" name="ID3" width="90" x="179" y="544">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.01"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_random_forest" compatibility="9.0.003" expanded="true" height="103" name="Random Forest" width="90" x="179" y="391">
+            <parameter key="number_of_trees" value="100"/>
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="apply_pruning" value="false"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="false"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="random_splits" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="voting_strategy" value="confidence vote"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="enable_parallel_execution" value="true"/>
+          </operator>
+          <operator activated="false" class="concurrency:parallel_decision_tree" compatibility="9.0.003" expanded="true" height="103" name="Decision Tree" width="90" x="313" y="391">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="apply_pruning" value="true"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="apply_prepruning" value="true"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+          </operator>
+          <operator activated="false" class="logistic_regression_evolutionary" compatibility="9.0.003" expanded="true" height="82" name="Logistic Regression (Evolutionary)" width="90" x="313" y="544">
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+            <parameter key="C" value="1.0"/>
+            <parameter key="start_population_type" value="random"/>
+            <parameter key="max_generations" value="10000"/>
+            <parameter key="generations_without_improval" value="30"/>
+            <parameter key="population_size" value="1"/>
+            <parameter key="tournament_fraction" value="0.75"/>
+            <parameter key="keep_best" value="true"/>
+            <parameter key="mutation_type" value="gaussian_mutation"/>
+            <parameter key="selection_type" value="tournament"/>
+            <parameter key="crossover_prob" value="1.0"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="show_convergence_plot" value="false"/>
+          </operator>
+          <operator activated="false" class="k_nn" compatibility="9.0.003" expanded="true" height="82" name="k-NN" width="90" x="447" y="391">
+            <parameter key="k" value="2"/>
+            <parameter key="weighted_vote" value="true"/>
+            <parameter key="measure_types" value="MixedMeasures"/>
+            <parameter key="mixed_measure" value="MixedEuclideanDistance"/>
+            <parameter key="nominal_measure" value="NominalDistance"/>
+            <parameter key="numerical_measure" value="EuclideanDistance"/>
+            <parameter key="divergence" value="GeneralizedIDivergence"/>
+            <parameter key="kernel_type" value="radial"/>
+            <parameter key="kernel_gamma" value="1.0"/>
+            <parameter key="kernel_sigma1" value="1.0"/>
+            <parameter key="kernel_sigma2" value="0.0"/>
+            <parameter key="kernel_sigma3" value="2.0"/>
+            <parameter key="kernel_degree" value="3.0"/>
+            <parameter key="kernel_shift" value="1.0"/>
+            <parameter key="kernel_a" value="1.0"/>
+            <parameter key="kernel_b" value="0.0"/>
+          </operator>
+          <operator activated="false" class="random_tree" compatibility="9.0.003" expanded="true" height="82" name="Random Tree" width="90" x="45" y="391">
+            <parameter key="criterion" value="gain_ratio"/>
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.1"/>
+            <parameter key="maximal_depth" value="20"/>
+            <parameter key="confidence" value="0.25"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="no_pre_pruning" value="false"/>
+            <parameter key="no_pruning" value="false"/>
+            <parameter key="guess_subset_ratio" value="true"/>
+            <parameter key="subset_ratio" value="0.2"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+          </operator>
+          <operator activated="false" class="decision_tree_weight_based" compatibility="9.0.003" expanded="true" height="68" name="Decision Tree (Weight-Based)" width="90" x="447" y="544">
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="no_pruning" value="false"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <process expanded="true">
+              <portSpacing port="source_training set" spacing="0"/>
+              <portSpacing port="sink_weights" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="h2o:gradient_boosted_trees" compatibility="9.0.000" expanded="true" height="103" name="Gradient Boosted Trees" width="90" x="313" y="34">
+            <parameter key="number_of_trees" value="40"/>
+            <parameter key="reproducible" value="true"/>
+            <parameter key="maximum_number_of_threads" value="4"/>
+            <parameter key="use_local_random_seed" value="false"/>
+            <parameter key="local_random_seed" value="1992"/>
+            <parameter key="maximal_depth" value="5"/>
+            <parameter key="min_rows" value="10.0"/>
+            <parameter key="min_split_improvement" value="0.0"/>
+            <parameter key="number_of_bins" value="20"/>
+            <parameter key="learning_rate" value="0.1"/>
+            <parameter key="sample_rate" value="1.0"/>
+            <parameter key="distribution" value="AUTO"/>
+            <parameter key="early_stopping" value="false"/>
+            <parameter key="stopping_rounds" value="1"/>
+            <parameter key="stopping_metric" value="AUTO"/>
+            <parameter key="stopping_tolerance" value="0.001"/>
+            <parameter key="max_runtime_seconds" value="0"/>
+            <list key="expert_parameters"/>
+          </operator>
+          <operator activated="false" class="chaid" compatibility="9.0.003" expanded="true" height="82" name="CHAID" width="90" x="45" y="544">
+            <parameter key="minimal_size_for_split" value="4"/>
+            <parameter key="minimal_leaf_size" value="2"/>
+            <parameter key="minimal_gain" value="0.01"/>
+            <parameter key="maximal_depth" value="10"/>
+            <parameter key="confidence" value="0.1"/>
+            <parameter key="number_of_prepruning_alternatives" value="3"/>
+            <parameter key="no_pre_pruning" value="false"/>
+            <parameter key="no_pruning" value="false"/>
+          </operator>
+          <operator activated="true" class="apply_model" compatibility="9.0.003" expanded="true" height="82" name="Apply Model" width="90" x="447" y="238">
+            <list key="application_parameters"/>
+            <parameter key="create_view" value="false"/>
+          </operator>
+          <operator activated="true" class="performance_classification" compatibility="9.0.003" expanded="true" height="82" name="Performance" width="90" x="514" y="34">
+            <parameter key="main_criterion" value="first"/>
+            <parameter key="accuracy" value="true"/>
+            <parameter key="classification_error" value="true"/>
+            <parameter key="kappa" value="true"/>
+            <parameter key="weighted_mean_recall" value="false"/>
+            <parameter key="weighted_mean_precision" value="false"/>
+            <parameter key="spearman_rho" value="false"/>
+            <parameter key="kendall_tau" value="false"/>
+            <parameter key="absolute_error" value="false"/>
+            <parameter key="relative_error" value="false"/>
+            <parameter key="relative_error_lenient" value="false"/>
+            <parameter key="relative_error_strict" value="false"/>
+            <parameter key="normalized_absolute_error" value="false"/>
+            <parameter key="root_mean_squared_error" value="false"/>
+            <parameter key="root_relative_squared_error" value="false"/>
+            <parameter key="squared_error" value="false"/>
+            <parameter key="correlation" value="false"/>
+            <parameter key="squared_correlation" value="false"/>
+            <parameter key="cross-entropy" value="false"/>
+            <parameter key="margin" value="false"/>
+            <parameter key="soft_margin_loss" value="false"/>
+            <parameter key="logistic_loss" value="false"/>
+            <parameter key="skip_undefined_labels" value="true"/>
+            <parameter key="use_example_weights" value="true"/>
+            <list key="class_weights"/>
+          </operator>
+          <connect from_port="in 1" to_op="Gradient Boosted Trees" to_port="training set"/>
+          <connect from_port="in 2" to_op="Apply Model" to_port="unlabelled data"/>
+          <connect from_op="Gradient Boosted Trees" from_port="model" to_op="Apply Model" to_port="model"/>
+          <connect from_op="Apply Model" from_port="labelled data" to_op="Performance" to_port="labelled data"/>
+          <connect from_op="Performance" from_port="performance" to_port="out 1"/>
+          <portSpacing port="source_in 1" spacing="0"/>
+          <portSpacing port="source_in 2" spacing="0"/>
+          <portSpacing port="source_in 3" spacing="0"/>
+          <portSpacing port="sink_out 1" spacing="0"/>
+          <portSpacing port="sink_out 2" spacing="0"/>
+        </process>
+        <description align="center" color="yellow" colored="true" width="126">Subprocesso para aplicar o Modelo Preditivo</description>
+      </operator>
+      <connect from_op="Read CSV - Treino" from_port="output" to_op="Trata Missing Values" to_port="in 1"/>
+      <connect from_op="Read CSV - Teste" from_port="output" to_op="Trata Missing Values" to_port="in 2"/>
+      <connect from_op="Trata Missing Values" from_port="out 1" to_op="OverSampling" to_port="in 1"/>
+      <connect from_op="Trata Missing Values" from_port="out 2" to_op="Aplica Modelo" to_port="in 2"/>
+      <connect from_op="OverSampling" from_port="out 1" to_op="Retira OutLiers" to_port="in 1"/>
+      <connect from_op="Retira OutLiers" from_port="out 1" to_op="Weight" to_port="in 1"/>
+      <connect from_op="Weight" from_port="out 1" to_op="Aplica Modelo" to_port="in 1"/>
+      <connect from_op="Aplica Modelo" from_port="out 1" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>
